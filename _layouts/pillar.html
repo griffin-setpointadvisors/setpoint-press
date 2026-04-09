@@ -1,0 +1,40 @@
+---
+layout: default
+---
+
+<section class="pillar-hero">
+  <div class="pillar-hero-inner">
+    <div class="pillar-hero-number">{{ page.pillar_number }}</div>
+    <div class="pillar-hero-label">{{ page.tagline }}</div>
+    <h1 class="pillar-hero-title">{{ page.title }}</h1>
+    <p class="pillar-hero-desc">{{ page.description }}</p>
+  </div>
+</section>
+
+<section class="pillar-articles">
+  <div class="pillar-articles-inner">
+
+    {% assign pillar_posts = site.collections | where: "label", page.pillar | first %}
+    {% assign articles = site[page.pillar] %}
+
+    {% if articles.size > 0 %}
+      <div class="article-grid">
+        {% for article in articles %}
+          <a href="{{ article.url | relative_url }}" class="article-card">
+            <div class="article-card-meta">{{ article.date | date: "%B %d, %Y" }}</div>
+            <h2 class="article-card-title">{{ article.title }}</h2>
+            {% if article.excerpt %}
+              <p class="article-card-excerpt">{{ article.excerpt | strip_html | truncate: 160 }}</p>
+            {% endif %}
+            <span class="article-card-read">Read →</span>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="pillar-empty">
+        <p>The first issue is in production. Check back soon.</p>
+      </div>
+    {% endif %}
+
+  </div>
+</section>

@@ -1,0 +1,86 @@
+---
+layout: default
+---
+
+<article class="article">
+
+  <!-- ── ARTICLE HEADER ── -->
+  <header class="article-header">
+    <div class="article-header-inner">
+      <div class="article-header-top">
+        <a href="{{ page.pillar_url | relative_url }}" class="article-pillar-link">
+          {{ page.pillar_name }}
+        </a>
+        <span class="article-date">{{ page.date | date: "%B %d, %Y" }}</span>
+      </div>
+      <h1 class="article-title">{{ page.title }}</h1>
+      {% if page.subtitle %}
+        <p class="article-subtitle">{{ page.subtitle }}</p>
+      {% endif %}
+      <div class="article-byline">
+        <span class="article-by">By</span>
+        <span class="article-author">{{ page.author | default: "Griffin McGuire" }}</span>
+        {% if page.author_title %}
+          <span class="article-author-title">· {{ page.author_title }}</span>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <!-- ── ARTICLE BODY ── -->
+  <div class="article-body">
+    <div class="article-body-inner">
+
+      {% if page.opening_line %}
+        <p class="article-opening">{{ page.opening_line }}</p>
+      {% endif %}
+
+      <div class="article-content">
+        {{ content }}
+      </div>
+
+    </div>
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="article-sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-section">
+          <div class="sidebar-label">Filed Under</div>
+          <a href="{{ page.pillar_url | relative_url }}" class="sidebar-pillar">{{ page.pillar_name }}</a>
+        </div>
+        {% if page.tags %}
+        <div class="sidebar-section">
+          <div class="sidebar-label">Tags</div>
+          <div class="sidebar-tags">
+            {% for tag in page.tags %}
+              <span class="sidebar-tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+        <div class="sidebar-section">
+          <div class="sidebar-label">The Publication</div>
+          <p class="sidebar-about">The Setpoint is a trades publication built from inside the work. Sharp where it needs to be. Raw where that is more true.</p>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- ── ARTICLE FOOTER ── -->
+  <footer class="article-footer">
+    <div class="article-footer-inner">
+      <div class="article-footer-rule"></div>
+      <div class="article-footer-content">
+        <div class="article-footer-brand">
+          <span class="footer-the">The</span>
+          <span class="footer-setpoint">Setpoint</span>
+        </div>
+        <a href="{{ page.pillar_url | relative_url }}" class="article-footer-link">
+          More from {{ page.pillar_name }} →
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</article>
